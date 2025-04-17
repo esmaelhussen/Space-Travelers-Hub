@@ -1,17 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'https://api.spacexdata.com/v4';
-const rocket = ` ${API_URL}/rockets `;
+const URL = 'https://api.spacexdata.com/v3';
+const ROCKET_URL = ` ${URL}/rockets `;
 const GET_ROCKETS = 'rockets/GET_ROCKETS';
-const TOGGLE_RESERVED = 'missions/TOGGLE_RESERVED';
+const RESERVED = 'rockets/RESERVED';
 
 /* eslint-disable default-param-last */
 const rocketsReducer = (state = [], action) => {
   switch (action.type) {
     case `${GET_ROCKETS}/fulfilled`:
       return [...state, ...action.payload];
-    case TOGGLE_RESERVED: {
+    case RESERVED: {
       return state.map((rocket) => {
         if (rocket.id === action.payload) {
           return { ...rocket, reserved: !rocket.reserved };
@@ -25,18 +25,18 @@ const rocketsReducer = (state = [], action) => {
 };
 
 export const getRockets = createAsyncThunk(GET_ROCKETS, async () => {
-  const response = await axios.get(rocket);
+  const response = await axios.get(ROCKET_URL);
   return response.data.map((rocket) => ({
-    id: rocket.rocket,
-    image: rocket.flickr_images[0],
+    id: rocket.rocket_id,
     name: rocket.rocket_name,
+    image: rocket.flickr_images[0],
     description: rocket.description,
     reserved: false,
   }));
 });
 
 export const toggleRocket = (id) => ({
-  type: TOGGLE_RESERVED,
+  type: RESERVED,
   payload: id,
 });
 
