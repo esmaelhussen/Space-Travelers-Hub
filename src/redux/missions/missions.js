@@ -1,16 +1,17 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const API_URL = "https://api.spacexdata.com/v3";
+const API_URL = 'https://api.spacexdata.com/v3';
 const mission = `{${API_URL}}/missions`;
-const GET_MISSIONS = "missions/GET_MISSIONS";
-const ToGGLE_MISSION = "missions/ToGGLE_MISSION";
+const GET_MISSIONS = 'missions/GET_MISSIONS';
+const TOGGLE_MISSION = 'missions/TOGGLE_MISSION';
 
+/* eslint-disable default-param-last */
 const missionsReducer = (state = [], action) => {
   switch (action.type) {
     case `${GET_MISSIONS}/fulfilled`:
-        return [...state, ...action.payload]; 
-    case ToGGLE_MISSION:{
+      return [...state, ...action.payload];
+    case TOGGLE_MISSION: {
       return state.map((mission) => {
         if (mission.id === action.payload) {
           return { ...mission, joined: !mission.joined };
@@ -21,7 +22,7 @@ const missionsReducer = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 export const getMissions = createAsyncThunk(GET_MISSIONS, async () => {
   const response = await axios.get(mission);
@@ -33,9 +34,9 @@ export const getMissions = createAsyncThunk(GET_MISSIONS, async () => {
   }));
 });
 
-export const toggle_mission = (id) => ({
-type: ToGGLE_MISSION,
-payload: id,
+export const toggleMission = (id) => ({
+  type: TOGGLE_MISSION,
+  payload: id,
 });
 
 export default missionsReducer;
