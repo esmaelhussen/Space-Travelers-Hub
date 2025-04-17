@@ -8,10 +8,10 @@ function Profile() {
     (mission) => mission.joined,
   );
   return (
-    <section className="flex items-start justify-center gap-12 flex-wrap my-8">
+    <section className="flex items-start justify-center gap-20 flex-wrap my-8">
       <div>
         <h2 className="text-lg font-bold">My Rockets</h2>
-        <table className="my-6 border-collapse w-25vw">
+        <table className="my-6 border-collapse w-[50vh]">
           <tbody>
             {rockets.length > 0 ? (
               rockets.map((rocket) => (
@@ -30,7 +30,7 @@ function Profile() {
 
       <div>
         <h2 className="text-lg font-bold">My Missions</h2>
-        <table className="my-6 border-collapse w-25vw border">
+        <table className="my-6 border-collapse border w-[50vh]">
           <tbody>
             {missions.length > 0 ? (
               missions.map((mission) => (

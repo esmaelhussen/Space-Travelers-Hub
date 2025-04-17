@@ -12,13 +12,13 @@ function Missions() {
     }
   }, []);
   return (
-    <section className="flex justify-center items-center w-80vw my-5vh mx-auto">
+    <section className="flex justify-center items-center w-[80vw] mx-auto">
       <table className="border-collapse rounded text-base w-full table-auto border">
         <thead>
           <tr>
-            <th className="text-lg text-center border p-3">Mission</th>
-            <th className="text-lg text-center border p-3">Description</th>
-            <th className="text-lg text-center border p-3" colSpan="2">
+            <th className="text-lg text-start p-3">Mission</th>
+            <th className="text-lg text-start p-3">Description</th>
+            <th className="text-lg text-start p-3" colSpan="2">
               Status
             </th>
           </tr>

@@ -1,17 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'https://api.spacexdata.com/v3';
-const mission = `${API_URL}/missions`;
+const URL = 'https://api.spacexdata.com/v3';
+const MISSION_URL = `${URL}/missions`;
 const GET_MISSIONS = 'missions/GET_MISSIONS';
-const TOGGLE_MISSION = 'missions/TOGGLE_MISSION';
+const JOINED = 'missions/JOINED';
 
 /* eslint-disable default-param-last */
 const missionsReducer = (state = [], action) => {
   switch (action.type) {
     case `${GET_MISSIONS}/fulfilled`:
       return [...state, ...action.payload];
-    case TOGGLE_MISSION: {
+    case JOINED: {
       return state.map((mission) => {
         if (mission.id === action.payload) {
           return { ...mission, joined: !mission.joined };
@@ -25,7 +25,7 @@ const missionsReducer = (state = [], action) => {
 };
 
 export const getMissions = createAsyncThunk(GET_MISSIONS, async () => {
-  const response = await axios.get(mission);
+  const response = await axios.get(MISSION_URL);
   return response.data.map((mission) => ({
     id: mission.mission_id,
     name: mission.mission_name,
@@ -34,8 +34,8 @@ export const getMissions = createAsyncThunk(GET_MISSIONS, async () => {
   }));
 });
 
-export const toggleMission = (id) => ({
-  type: TOGGLE_MISSION,
+export const joinMission = (id) => ({
+  type: JOINED,
   payload: id,
 });
 

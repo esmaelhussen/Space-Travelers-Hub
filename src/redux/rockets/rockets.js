@@ -35,7 +35,7 @@ export const getRockets = createAsyncThunk(GET_ROCKETS, async () => {
   }));
 });
 
-export const toggleRocket = (id) => ({
+export const reserveRocket = (id) => ({
   type: RESERVED,
   payload: id,
 });
