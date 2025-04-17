@@ -3,45 +3,48 @@ import { useDispatch } from 'react-redux';
 import { toggleMission } from '../redux/missions/missions';
 
 function Mission({ mission }) {
-  const dispatch = useDispatch();
   const {
     id, name, description, joined,
   } = mission;
-
-  const handleToggleMission = () => {
-    dispatch(toggleMission(id));
-  };
-
+  const dispatch = useDispatch();
   return (
     <tr>
-      <td>{name}</td>
-      <td>{description}</td>
-      <td>
+      <td className="border p-3">{name}</td>
+      <td className="border p-3">{description}</td>
+      <td className="border p-3">
         {!joined ? (
-          <span>
+          <span className="bg-gray-400 border-0 rounded text-white px-3 py-2 text-base block">
             Not a member
           </span>
-        ) : (
-          <span>
-            Member
-          </span>
-        )}
+        )
+          : (
+            <span className="bg-green-500 border-0 rounded text-white px-3 py-2 text-base block">
+              Member
+            </span>
+          )}
       </td>
-      <td>
+      <td className="border p-3">
         {!joined ? (
-          <button type="button" onClick={handleToggleMission}>
+          <button
+            className="bg-sky-500 border-0 rounded text-white cursor-pointer px-3 py-2 text-base"
+            type="button"
+            onClick={() => dispatch(toggleMission(id))}
+          >
             Join Mission
           </button>
         ) : (
-          <button type="button" onClick={handleToggleMission}>
-            Leave Mission
+          <button
+            className="mt-6 px-3 py-2 border border-red-500 text-red-500 bottom-0 rounded-md cursor-pointer"
+            type="button"
+            onClick={() => dispatch(toggleMission(id))}
+          >
+            Abort Mission
           </button>
         )}
       </td>
     </tr>
   );
 }
-
 Mission.propTypes = {
   mission: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -50,5 +53,4 @@ Mission.propTypes = {
     joined: PropTypes.bool.isRequired,
   }).isRequired,
 };
-
 export default Mission;

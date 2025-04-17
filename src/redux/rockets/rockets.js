@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'https://api.spacexdata.com/v3';
-const rocket = `{${API_URL}}/rockets`;
+const API_URL = 'https://api.spacexdata.com/v4';
+const rocket = ` ${API_URL}/rockets `;
 const GET_ROCKETS = 'rockets/GET_ROCKETS';
-const TOGGLE_RESERVED = 'rockets/TOGGLE_RESERVED';
+const TOGGLE_RESERVED = 'missions/TOGGLE_RESERVED';
 
 /* eslint-disable default-param-last */
 const rocketsReducer = (state = [], action) => {
@@ -27,7 +27,7 @@ const rocketsReducer = (state = [], action) => {
 export const getRockets = createAsyncThunk(GET_ROCKETS, async () => {
   const response = await axios.get(rocket);
   return response.data.map((rocket) => ({
-    id: rocket.rocket_id,
+    id: rocket.rocket,
     image: rocket.flickr_images[0],
     name: rocket.rocket_name,
     description: rocket.description,

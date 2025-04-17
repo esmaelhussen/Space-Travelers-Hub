@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Mission from '../components/Mission';
 import { getMissions } from '../redux/missions/missions';
@@ -12,13 +12,15 @@ function Missions() {
     }
   }, []);
   return (
-    <secton>
-      <table>
+    <section className="flex justify-center items-center w-80vw my-5vh mx-auto">
+      <table className="border-collapse rounded text-base w-full table-auto border">
         <thead>
           <tr>
-            <th>Mission</th>
-            <th>Description</th>
-            <th>Status</th>
+            <th className="text-lg text-center border p-3">Mission</th>
+            <th className="text-lg text-center border p-3">Description</th>
+            <th className="text-lg text-center border p-3" colSpan="2">
+              Status
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -27,8 +29,7 @@ function Missions() {
           ))}
         </tbody>
       </table>
-    </secton>
+    </section>
   );
 }
-
 export default Missions;

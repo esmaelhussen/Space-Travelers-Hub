@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_URL = 'https://api.spacexdata.com/v3';
-const mission = `{${API_URL}}/missions`;
+const mission = `${API_URL}/missions`;
 const GET_MISSIONS = 'missions/GET_MISSIONS';
 const TOGGLE_MISSION = 'missions/TOGGLE_MISSION';
 

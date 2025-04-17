@@ -1,3 +1,5 @@
+/** @format */
+
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { toggleRocket } from '../redux/rockets/rockets';
@@ -5,21 +7,16 @@ import { toggleRocket } from '../redux/rockets/rockets';
 function Rocket({ rocket }) {
   const dispatch = useDispatch();
   const {
-    id, name, image, description, reserved,
+    id, name, description, image, reserved,
   } = rocket;
-
-  const handleToggleRocket = () => {
-    dispatch(toggleRocket(id));
-  };
-
   return (
-    <div>
-      <img src={image} alt={name} />
+    <div className="flex justify-center items-start py-4 gap-5">
+      <img src={image} alt="rocket" className="w-25vw rounded" />
       <div>
-        <h2>
+        <h2 className="font-medium text-2xl">
           {name}
           {reserved && (
-          <span>
+          <span className="ml-2 p-0.5 bg-green-500 text-white text-xs rounded-md align-super">
             Reserved
           </span>
           )}
@@ -29,7 +26,7 @@ function Rocket({ rocket }) {
           <button
             className="mt-6 px-3 py-2 border border-red-500 text-red-500 bottom-0 rounded-md cursor-pointer"
             type="button"
-            onClick={handleToggleRocket}
+            onClick={() => dispatch(toggleRocket(id))}
           >
             Cancel Reservation
           </button>
@@ -37,7 +34,7 @@ function Rocket({ rocket }) {
           <button
             className="mt-6 px-3 py-2 bg-sky-500 text-white bottom-0 rounded-md cursor-pointer"
             type="button"
-            onClick={handleToggleRocket}
+            onClick={() => dispatch(toggleRocket(id))}
           >
             Reserve Rocket
           </button>
