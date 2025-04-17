@@ -12,7 +12,7 @@ function Header() {
         <li>
           <NavLink
             to="/"
-            className="text-lg hover:text-sky-500 hover:underline"
+            className="text-lg text-sky-500 focus:underline"
             end
           >
             Rockets
@@ -21,7 +21,7 @@ function Header() {
         <li>
           <NavLink
             to="/missions"
-            className="text-lg hover:text-sky-500 hover:underline"
+            className="text-lg text-sky-500 focus:underline"
           >
             Missions
           </NavLink>
@@ -29,7 +29,7 @@ function Header() {
         <li>
           <NavLink
             to="/profile"
-            className="text-lg hover:text-sky-500 hover:underline"
+            className="text-lg text-sky-500 focus:underline"
           >
             My Profile
           </NavLink>
